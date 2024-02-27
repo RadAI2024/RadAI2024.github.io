@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>龙影</title>
+  <style>
+    /* 样式重置 */
+    body, ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    /* 对 body 设置 margin 和 padding 为 0 */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    /* 导航栏样式 */
+    nav {
+      background-color: #333; /* 导航栏背景色 */
+      color: #fff; /* 文字颜色 */
+      padding: 10px 0; /* 上下内边距 */
+    }
+
+    nav ul {
+      display: flex; /* 水平布局 */
+      justify-content: space-between; /* 均分 */
+      align-items: center; /* 垂直居中 */
+      max-width: 1200px; /* 最大宽度 */
+      margin: 0 auto; /* 水平居中 */
+      padding: 0 20px; /* 左右内边距 */
+      font-weight: bold;
+    }
+
+    nav h1 {
+      margin: 0; /* 去掉标题的外边距 */
+    }
+
+    nav ul li {
+      margin-right: 20px; /* 右边距 */
+    }
+
+    nav ul li:last-child {
+      margin-right: 0; /* 最后一个元素去掉右边距 */
+    }
+
+    nav ul li a {
+      color: #fff; /* 文字颜色 */
+      text-decoration: none; /* 去掉下划线 */
+    }
+
+    /* 部分样式 */
+    #begin {
+      background-image: url('asset/step1-1.png'); /* 背景图片路径 */
+      background-size: 100% 100%; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 100vh;
+
+      position: relative;
+    }
+
+    #hello-text, #about, #introduce1, #introduce2 {
+      position: absolute;
+      font-family: "Microsoft YaHei", sans-serif;
+      letter-spacing: 0.15em; /* 字间距 */
+      color: #fff; /* 文字颜色 */
+      text-align: left;
+    }
+
+    #hello-text {
+      top: 40%; /* 文字距离顶部的距离 */
+      left: 14%; /* 文字距离左侧的距离 */
+      font-size: 4vw; /* 字体大小（视口宽度的4%） */
+    }
+
+    #about {
+      top: 50%; /* 文字距离顶部的距离 */
+      left: 14%; /* 文字距离左侧的距离 */
+      font-size: 4vw; /* 字体大小（视口宽度的3%） */
+    }
+
+    #introduce1 {
+      top: 65%; /* 文字距离顶部的距离 */
+      left: 14%; /* 文字距离左侧的距离 */
+      font-size: 1.5vw; /* 字体大小（视口宽度的2.5%） */
+      font-weight: bold;
+    }
+
+    #introduce2 {
+      top: 70%; /* 文字距离顶部的距离 */
+      left: 14%; /* 文字距离左侧的距离 */
+      font-size: 1.5vw; /* 字体大小（视口宽度的2%） */
+      font-weight: bold;
+    }
+
+
+
+    #model1{
+      background-image: url('asset/step2-1.png'); /* 背景图片路径 */
+      background-size: contain; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 80vh;
+
+      position: relative;
+    }
+
+    #model2{
+      background-image: url('asset/step2-2.png'); /* 背景图片路径 */
+      background-size: contain; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 90vh;
+
+      position: relative;
+    }
+
+    #product1{
+      background-image: url('asset/step3-1.png'); /* 背景图片路径 */
+      background-size: 100% 100%; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 107vh;
+
+      position: relative;
+    }
+
+    #product2{
+      background-image: url('asset/step3-2.png'); /* 背景图片路径 */
+      background-size: 100% 100%; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 107vh;
+
+      position: relative;
+    }
+
+    #product3{
+      background-image: url('asset/step3-3.png'); /* 背景图片路径 */
+      background-size: 100% 100%; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 107vh;
+
+      position: relative;
+    }
+
+    #tech1{
+      background-image: url('asset/step4-1.png'); /* 背景图片路径 */
+      background-size: contain; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 45vh;
+
+      position: relative;
+    }
+
+    #tech2{
+      background-image: url('asset/step4-2.png'); /* 背景图片路径 */
+      background-size: contain; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 87.7vh;
+
+      position: relative;
+    }
+
+    #case1{
+      background-image: url('asset/step5-1.png'); /* 背景图片路径 */
+      background-size: contain; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 60vh;
+
+      position: relative;
+    }
+
+    #case2{
+      background-image: url('asset/step5-2.png'); /* 背景图片路径 */
+      background-size: contain; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 90vh;
+
+      position: relative;
+    }
+
+    #team1{
+      background-image: url('asset/step6-1.png'); /* 背景图片路径 */
+      background-size: 100% 100%; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 107vh;
+
+      position: relative;
+    }
+
+    #team2{
+      background-image: url('asset/step6-2.png'); /* 背景图片路径 */
+      background-size: contain; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 97vh;
+
+      position: relative;
+    }
+
+    #ma{
+      background-image: url('asset/step7-1.png'); /* 背景图片路径 */
+      background-size: contain; /* 图片填充整个容器，保持宽高比 */
+      background-repeat: no-repeat; /* 不重复显示 */
+      color: #fff; /* 文字颜色 */
+      padding: 0 0; /* 上下内边距 */
+      text-align: center; /* 文字居中 */
+      height: 76vh;
+
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- 页面内容 -->
+<div id="begin">
+  <!-- 导航栏 -->
+  <nav>
+    <ul>
+      <li>
+        <h1><a href="#">龙影</a></h1>
+      </li>
+      <li><a href="#model">模型介绍</a></li>
+      <li><a href="#product">产品介绍</a></li>
+      <li><a href="#tech">技术细节</a></li>
+      <li><a href="#case">使用案例</a></li>
+      <li><a href="#team">团队介绍</a></li>
+    </ul>
+  </nav>
+  <div id="hello-text">龙影大模型RadGPT</div>
+  <div id="about">关于我们</div>
+  <div id="introduce1">全球首个针对医学影像诊断的人工智能大语言模型</div>
+  <div id="introduce2">通过图像分析生成诊断，临床验证准确率超95%</div>
+</div>
+
+<div id="model">
+
+  <!-- 模型介绍内容 -->
+  <div id="model1"></div>
+  <div id="model2"></div>
+</div>
+<div id="product">
+  <!--产品介绍内容-->
+  <div id="product1"></div>
+  <div id="product2"></div>
+  <div id="product3"></div>
+</div>
+<div id="tech">
+  <!-- 技术细节内容 -->
+  <div id="tech1"></div>
+  <div id="tech2"></div>
+</div>
+<div id="case">
+  <!-- 使用案例内容 -->
+  <div id="case1"></div>
+  <div id="case2"></div>
+</div>
+<div id="team">
+  <!-- 团队介绍内容 -->
+  <div id="team1"></div>
+  <div id="team2"></div>
+</div>
+<div id="ma">
+  <!-- 二维码 -->
+</div>
+
+<script>
+  // 监听导航栏链接的点击事件
+  document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      // 获取目标元素的 ID
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      // 使用 scrollIntoView 方法滚动至目标元素
+      targetElement.scrollIntoView({
+        behavior: 'smooth' // 平滑滚动效果
+      });
+    });
+  });
+</script>
+</body>
+</html>
