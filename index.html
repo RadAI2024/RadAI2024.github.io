@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
   <title>龙影</title>
   <style>
     /* 样式重置 */
@@ -50,256 +51,277 @@
       text-decoration: none; /* 去掉下划线 */
     }
 
-    /* 部分样式 */
-    #begin {
-      background-image: url('asset/step1-1.png'); /* 背景图片路径 */
-      background-size: 100% 100%; /* 图片填充整个容器，保持宽高比 */
+    /* 图标样式 */
+    .icon {
+      display: inline-block; /* 设置为内联块元素，使得可以设置宽度和高度 */
+      width: 35px; /* 设置图标的宽度 */
+      height: 35px; /* 设置图标的高度 */
+      background-image: url('asset/logo.jpg'); /* 设置图标的背景图片路径 */
+      background-size: contain; /* 图标填充容器，保持宽高比 */
       background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 100vh;
-
-      position: relative;
+      margin-top: 10px;
+      /* 其他样式，例如位置等 */
     }
 
-    #hello-text, #about, #introduce1, #introduce2 {
-      position: absolute;
-      font-family: "Microsoft YaHei", sans-serif;
-      letter-spacing: 0.15em; /* 字间距 */
-      color: #fff; /* 文字颜色 */
+    .image-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 0px;
+    }
+
+    /* 表单容器样式 */
+    .form-container {
+      background: rgba(5,22,56);
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    /* 表单标题样式 */
+    .form-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    /* 表单样式 */
+    form {
       text-align: left;
     }
 
-    #hello-text {
-      top: 40%; /* 文字距离顶部的距离 */
-      left: 14%; /* 文字距离左侧的距离 */
-      font-size: 4vw; /* 字体大小（视口宽度的4%） */
+    /* 表单项样式 */
+    .form-item {
+      color: white;
+      margin-bottom: 20px; /* 增加标签与文本框之间的间距 */
+      text-align: center; /* 文本居中 */
     }
 
-    #about {
-      top: 50%; /* 文字距离顶部的距离 */
-      left: 14%; /* 文字距离左侧的距离 */
-      font-size: 4vw; /* 字体大小（视口宽度的3%） */
+    /* 提交按钮容器样式 */
+    .submit-container {
+      text-align: center;
+      margin-top: 20px;
     }
 
-    #introduce1 {
-      top: 65%; /* 文字距离顶部的距离 */
-      left: 14%; /* 文字距离左侧的距离 */
-      font-size: 1.5vw; /* 字体大小（视口宽度的2.5%） */
-      font-weight: bold;
+    /* 提交按钮样式 */
+    .submit-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 5px;
     }
 
-    #introduce2 {
-      top: 70%; /* 文字距离顶部的距离 */
-      left: 14%; /* 文字距离左侧的距离 */
-      font-size: 1.5vw; /* 字体大小（视口宽度的2%） */
-      font-weight: bold;
+    /* 附加文字样式 */
+    .additional-text {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* 星号样式 */
+    span.required {
+      color: red;
+    }
+
+    /* 行样式 */
+    .form-row {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* 列样式 */
+    .form-column {
+      width: calc(33.33% - 20px); /* 调整宽度并增加间距 */
+      text-align: center; /* 文本居中 */
+    }
+
+    /* 输入框样式 */
+    input[type="text"],
+    input[type="email"] {
+      width: calc(50% - 10px); /* 缩小为父容器的一半并留出间距 */
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    /* 最后一列去掉右边距 */
+    .form-column:last-child {
+      margin-right: 0;
+    }
+
+    /* 标签与文本框上下间距设置为20px */
+    label {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    /*提示框样式*/
+    .alert {
+      display: none;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      background-color: #f44336;
+      color: white;
+    }
+    .alert.show {
+      display: block;
     }
 
 
-
-    #model1{
-      background-image: url('asset/step2-1.png'); /* 背景图片路径 */
-      background-size: contain; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 80vh;
-
-      position: relative;
+    /* Your CSS styles here */
+    .popup-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
     }
-
-    #model2{
-      background-image: url('asset/step2-2.png'); /* 背景图片路径 */
-      background-size: contain; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 90vh;
-
-      position: relative;
+    .popup-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 80%;
+      max-height: 80%;
+      text-align: center;
     }
-
-    #product1{
-      background-image: url('asset/step3-1.png'); /* 背景图片路径 */
-      background-size: 100% 100%; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 107vh;
-
-      position: relative;
+    .popup-image {
+      max-width: 100%;
+      max-height: 100%;
     }
-
-    #product2{
-      background-image: url('asset/step3-2.png'); /* 背景图片路径 */
-      background-size: 100% 100%; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 107vh;
-
-      position: relative;
-    }
-
-    #product3{
-      background-image: url('asset/step3-3.png'); /* 背景图片路径 */
-      background-size: 100% 100%; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 107vh;
-
-      position: relative;
-    }
-
-    #tech1{
-      background-image: url('asset/step4-1.png'); /* 背景图片路径 */
-      background-size: contain; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 45vh;
-
-      position: relative;
-    }
-
-    #tech2{
-      background-image: url('asset/step4-2.png'); /* 背景图片路径 */
-      background-size: contain; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 87.7vh;
-
-      position: relative;
-    }
-
-    #case1{
-      background-image: url('asset/step5-1.png'); /* 背景图片路径 */
-      background-size: contain; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 60vh;
-
-      position: relative;
-    }
-
-    #case2{
-      background-image: url('asset/step5-2.png'); /* 背景图片路径 */
-      background-size: contain; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 90vh;
-
-      position: relative;
-    }
-
-    #team1{
-      background-image: url('asset/step6-1.png'); /* 背景图片路径 */
-      background-size: 100% 100%; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 107vh;
-
-      position: relative;
-    }
-
-    #team2{
-      background-image: url('asset/step6-2.png'); /* 背景图片路径 */
-      background-size: contain; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 97vh;
-
-      position: relative;
-    }
-
-    #ma{
-      background-image: url('asset/step7-1.png'); /* 背景图片路径 */
-      background-size: contain; /* 图片填充整个容器，保持宽高比 */
-      background-repeat: no-repeat; /* 不重复显示 */
-      color: #fff; /* 文字颜色 */
-      padding: 0 0; /* 上下内边距 */
-      text-align: center; /* 文字居中 */
-      height: 76vh;
-
-      position: relative;
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: black;
+      font-size: 40px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-
-
+<!-- 二维码 -->
+<div class="popup-container" id="popupContainer">
+  <div class="popup-content">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <img src="/asset/ma.jpg" alt="Popup Image" class="popup-image">
+  </div>
+</div>
 <!-- 页面内容 -->
 <div id="begin">
   <!-- 导航栏 -->
   <nav>
     <ul>
       <li>
-        <h1><a href="#">龙影</a></h1>
+        <h1 class="logo"><span></span> 龙影</h1>
       </li>
       <li><a href="#model">模型介绍</a></li>
       <li><a href="#product">产品介绍</a></li>
       <li><a href="#tech">技术细节</a></li>
       <li><a href="#case">使用案例</a></li>
       <li><a href="#team">团队介绍</a></li>
+      <li><a href="#" id="tryNow">立即试用</a></li>
     </ul>
   </nav>
-  <div id="hello-text">龙影大模型RadGPT</div>
-  <div id="about">关于我们</div>
-  <div id="introduce1">全球首个针对医学影像诊断的人工智能大语言模型</div>
-  <div id="introduce2">通过图像分析生成诊断，临床验证准确率超95%</div>
+</div>
+<div class="image-container">
+  <img src="/asset/step1-1.png" >
+  <img src="/asset/step2-1.png" id="model">
+  <img src="/asset/step2-2.png" >
+  <img src="/asset/step3-1.png" id="product">
+  <img src="/asset/step3-2.png" >
+  <img src="/asset/step3-3.png" >
+  <img src="/asset/step4-1.png" id="tech">
+  <img src="/asset/step4-2.png" >
+  <img src="/asset/step5-1.png" id="case">
+  <img src="/asset/step5-2.png" >
+  <img src="/asset/step6-1.png" id="team">
+  <img src="/asset/step6-2.png" >
 </div>
 
-<div id="model">
 
-  <!-- 模型介绍内容 -->
-  <div id="model1"></div>
-  <div id="model2"></div>
+<div class="form-container">
+  <div style="height: 60px"></div>
+  <div class="form-title">我们期待与您合作</div>
+  <form action="#" method="post">
+    <div class="form-row">
+      <div class="form-column">
+        <div class="form-item">
+          <label for="name">怎么称呼您<span class="required">*</span>:</label>
+          <input type="text" id="name" name="name" placeholder="请输入" required>
+        </div>
+      </div>
+      <div class="form-column">
+        <div class="form-item">
+          <label for="name">您的联系方式:<span class="required">*</span>:</label>
+          <input type="text" id="contact" name="contact" placeholder="请输入" required>
+        </div>
+      </div>
+      <div class="form-column">
+        <div class="form-item">
+          <label for="name">您的单位:<span class="required">*</span>:</label>
+          <input type="text" id="company" name="company" placeholder="请输入" required>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-column">
+        <div class="form-item">
+          <label for="department">您的部门:</label>
+          <input type="text" id="department" name="department" placeholder="请输入">
+        </div>
+      </div>
+      <div class="form-column">
+        <div class="form-item">
+          <label for="position">您的职位:</label>
+          <input type="text" id="position" name="position" placeholder="请输入">
+        </div>
+      </div>
+      <div class="form-column">
+        <div class="form-item">
+          <label for="email">您的邮箱:</label>
+          <input type="email" id="email" name="email" placeholder="请输入">
+        </div>
+      </div>
+    </div>
+    <div class="submit-container">
+      <button type="submit" class="submit-btn" onclick="submitForm()">立即提交</button>
+      <!-- <div class="additional-text">提交视为您已阅读并同意</div> -->
+      <div style="height: 20px"></div>
+    </div>
+  </form>
 </div>
-<div id="product">
-  <!--产品介绍内容-->
-  <div id="product1"></div>
-  <div id="product2"></div>
-  <div id="product3"></div>
-</div>
-<div id="tech">
-  <!-- 技术细节内容 -->
-  <div id="tech1"></div>
-  <div id="tech2"></div>
-</div>
-<div id="case">
-  <!-- 使用案例内容 -->
-  <div id="case1"></div>
-  <div id="case2"></div>
-</div>
-<div id="team">
-  <!-- 团队介绍内容 -->
-  <div id="team1"></div>
-  <div id="team2"></div>
-</div>
-<div id="ma">
-  <!-- 二维码 -->
-</div>
-
 <script>
+  window.onload = function() {
+    resizeImages();
+  };
+
+  window.onresize = function() {
+    resizeImages();
+  };
+
+  function resizeImages() {
+    var images = document.querySelectorAll('.image-container img');
+    var screenWidth = window.innerWidth;
+
+    for (var i = 0; i < images.length; i++) {
+      images[i].style.maxWidth = screenWidth + 'px';
+    }
+  }
   // 监听导航栏链接的点击事件
   document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -315,6 +337,64 @@
       });
     });
   });
+  function submitForm() {
+    // 检查必填项是否已填写
+    var name = document.getElementById("name").value.trim();
+    var contact = document.getElementById("contact").value.trim();
+    var company = document.getElementById("company").value.trim();
+    if (name === '' || contact === '' || company === '') {
+      alert("存在必填项未填！");
+      return; // 如果有必填项未填写，则停止执行后续操作
+    }
+
+    // 弹出确认框
+    if (confirm("信息提交成功，感谢您的填写！")) {
+      // 如果用户点击确认，则提交表单
+      document.getElementById("myForm").submit();
+    }
+  }
+
+  // JavaScript to handle click event on "立即试用" link
+  document.getElementById('tryNow').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default link behavior
+
+    // Show the popup container
+    document.getElementById('popupContainer').style.display = 'block';
+  });
+
+  // JavaScript to handle click event on close button
+  document.getElementById('closeBtn').addEventListener('click', function() {
+    // Hide the popup container
+    document.getElementById('popupContainer').style.display = 'none';
+  });
 </script>
+
+
+<!-- 有用，先暂时注释 -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script> -->
+
+<!-- <script> -->
+<!--   function submitForm() { -->
+<!--     // 检查必填项是否已填写 -->
+<!--     var name = document.getElementById("name").value.trim(); -->
+<!--     if (name === "") { -->
+<!--       alert("存在必填项未填！"); -->
+<!--       return; // 如果有必填项未填写，则停止执行后续操作 -->
+<!--     } -->
+
+<!--     // 弹出确认框 -->
+<!--     Swal.fire({ -->
+<!--       title: '成功', -->
+<!--       text: '信息提交成功，感谢您的填写！', -->
+<!--       icon: 'success', -->
+<!--       confirmButtonText: '确定' -->
+<!--     }).then((result) => { -->
+<!--       if (result.isConfirmed) { -->
+<!--         // 如果用户点击确认，则提交表单 -->
+<!--         document.getElementById("myForm").submit(); -->
+<!--       } -->
+<!--     }); -->
+<!--   } -->
+<!-- </script> -->
 </body>
 </html>
