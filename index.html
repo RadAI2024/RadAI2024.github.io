@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
-  <title>龙影</title>
+  <title>龙影大模型RadGPT</title>
   <style>
     /* 样式重置 */
     body, ul {
@@ -19,6 +19,11 @@
     }
     /* 导航栏样式 */
     nav {
+      position: fixed; /* 固定在页面顶端 */
+      top: 0; /* 距离页面顶端的距离 */
+      left: 0; /* 距离页面左侧的距离 */
+      width: 100%; /* 宽度占满整个页面 */
+      z-index: 999; /* 设置 z-index 避免被其他元素遮挡 */
       background-color: #333; /* 导航栏背景色 */
       color: #fff; /* 文字颜色 */
       padding: 10px 0; /* 上下内边距 */
@@ -146,8 +151,8 @@
     /* 输入框样式 */
     input[type="text"],
     input[type="email"] {
-      width: calc(50% - 10px); /* 缩小为父容器的一半并留出间距 */
-      padding: 8px;
+      width: calc(50%); /* 缩小为父容器的一半并留出间距 */
+      padding: 5px;
       box-sizing: border-box;
       border: 1px solid #ccc;
       border-radius: 5px;
@@ -205,8 +210,8 @@
     }
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 0;
+      right: 0;
       color: black;
       font-size: 40px;
       cursor: pointer;
@@ -214,11 +219,18 @@
   </style>
 </head>
 <body>
-<!-- 二维码 -->
-<div class="popup-container" id="popupContainer">
+<!-- 小程序二维码 -->
+<div class="popup-container" id="popupContainer1">
   <div class="popup-content">
-    <span class="close-btn" id="closeBtn">&times;</span>
-    <img src="/asset/ma.jpg" alt="Popup Image" class="popup-image">
+    <span class="close-btn" id="closeBtn1">&times;</span>
+    <img src="/asset/ma1.jpg" alt="Popup Image" class="popup-image">
+  </div>
+</div>
+<!-- 公众号二维码 -->
+<div class="popup-container" id="popupContainer2">
+  <div class="popup-content">
+    <span class="close-btn" id="closeBtn2">&times;</span>
+    <img src="/asset/ma2.jpg" alt="Popup Image" class="popup-image">
   </div>
 </div>
 <!-- 页面内容 -->
@@ -234,76 +246,73 @@
       <li><a href="#tech">技术细节</a></li>
       <li><a href="#case">使用案例</a></li>
       <li><a href="#team">团队介绍</a></li>
-      <li><a href="#" id="tryNow">立即试用</a></li>
+      <li><a href="#" id="tryNow_miniProgram">立即试用</a></li>
+      <li><a href="#" id="tryNow_wxOfficialAccount">关注我们</a></li>
     </ul>
   </nav>
 </div>
 <div class="image-container">
-  <img src="/asset/step1-1.png" >
-  <img src="/asset/step2-1.png" id="model">
-  <img src="/asset/step2-2.png" >
-  <img src="/asset/step3-1.png" id="product">
-  <img src="/asset/step3-2.png" >
-  <img src="/asset/step3-3.png" >
-  <img src="/asset/step4-1.png" id="tech">
-  <img src="/asset/step4-2.png" >
-  <img src="/asset/step5-1.png" id="case">
-  <img src="/asset/step5-2.png" >
-  <img src="/asset/step6-1.png" id="team">
-  <img src="/asset/step6-2.png" >
+  <img src="./asset/step1-1.png" >
+  <img src="./asset/step2-1.png" id="model">
+  <img src="./asset/step3-1.png" id="product">
+  <img src="./asset/step4-1.png" id="tech">
+  <img src="./asset/step5-1.png" id="case">
+  <img src="./asset/step6-1.png" id="team">
 </div>
 
 
 <div class="form-container">
   <div style="height: 60px"></div>
   <div class="form-title">我们期待与您合作</div>
-  <form action="#" method="post">
-    <div class="form-row">
-      <div class="form-column">
-        <div class="form-item">
-          <label for="name">怎么称呼您<span class="required">*</span>:</label>
-          <input type="text" id="name" name="name" placeholder="请输入" required>
-        </div>
-      </div>
-      <div class="form-column">
-        <div class="form-item">
-          <label for="name">您的联系方式:<span class="required">*</span>:</label>
-          <input type="text" id="contact" name="contact" placeholder="请输入" required>
-        </div>
-      </div>
-      <div class="form-column">
-        <div class="form-item">
-          <label for="name">您的单位:<span class="required">*</span>:</label>
-          <input type="text" id="company" name="company" placeholder="请输入" required>
-        </div>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-column">
-        <div class="form-item">
-          <label for="department">您的部门:</label>
-          <input type="text" id="department" name="department" placeholder="请输入">
-        </div>
-      </div>
-      <div class="form-column">
-        <div class="form-item">
-          <label for="position">您的职位:</label>
-          <input type="text" id="position" name="position" placeholder="请输入">
-        </div>
-      </div>
-      <div class="form-column">
-        <div class="form-item">
-          <label for="email">您的邮箱:</label>
-          <input type="email" id="email" name="email" placeholder="请输入">
-        </div>
-      </div>
-    </div>
-    <div class="submit-container">
-      <button type="submit" class="submit-btn" onclick="submitForm()">立即提交</button>
-      <!-- <div class="additional-text">提交视为您已阅读并同意</div> -->
-      <div style="height: 20px"></div>
-    </div>
-  </form>
+  <div class="form-title" style="font-size: 16px">联系邮箱：radgpt2024@gmail.com</div>
+  <!-- <form action="#" method="post"> -->
+  <!--   <div class="form-row"> -->
+  <!--     <div class="form-column"> -->
+  <!--       <div class="form-item"> -->
+  <!--         <label for="name">怎么称呼您<span class="required">*</span>:</label> -->
+  <!--         <input type="text" id="name" name="name" placeholder="请输入" required> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--     <div class="form-column"> -->
+  <!--       <div class="form-item"> -->
+  <!--         <label for="name">您的联系方式:<span class="required">*</span>:</label> -->
+  <!--         <input type="text" id="contact" name="contact" placeholder="请输入" required> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--     <div class="form-column"> -->
+  <!--       <div class="form-item"> -->
+  <!--         <label for="name">您的单位:<span class="required">*</span>:</label> -->
+  <!--         <input type="text" id="company" name="company" placeholder="请输入" required> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--   </div> -->
+  <!--   <div class="form-row"> -->
+  <!--     <div class="form-column"> -->
+  <!--       <div class="form-item"> -->
+  <!--         <label for="department">您的部门:</label> -->
+  <!--         <input type="text" id="department" name="department" placeholder="请输入"> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--     <div class="form-column"> -->
+  <!--       <div class="form-item"> -->
+  <!--         <label for="position">您的职位:</label> -->
+  <!--         <input type="text" id="position" name="position" placeholder="请输入"> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--     <div class="form-column"> -->
+  <!--       <div class="form-item"> -->
+  <!--         <label for="email">您的邮箱:</label> -->
+  <!--         <input type="email" id="email" name="email" placeholder="请输入"> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--   </div> -->
+  <!--   <div class="submit-container"> -->
+  <!--     <button type="submit" class="submit-btn" onclick="submitForm()">立即提交</button> -->
+  <!--     &lt;!&ndash; <div class="additional-text">提交视为您已阅读并同意</div> &ndash;&gt; -->
+  <!--     <div style="height: 20px"></div> -->
+  <!--   </div> -->
+  <!-- </form> -->
+  <div style="height: 50px"></div>
 </div>
 <script>
   window.onload = function() {
@@ -355,17 +364,33 @@
   }
 
   // JavaScript to handle click event on "立即试用" link
-  document.getElementById('tryNow').addEventListener('click', function(event) {
+  document.getElementById('tryNow_miniProgram').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default link behavior
 
     // Show the popup container
-    document.getElementById('popupContainer').style.display = 'block';
+    document.getElementById('popupContainer1').style.display = 'block';
   });
 
   // JavaScript to handle click event on close button
-  document.getElementById('closeBtn').addEventListener('click', function() {
+  document.getElementById('closeBtn1').addEventListener('click', function() {
     // Hide the popup container
-    document.getElementById('popupContainer').style.display = 'none';
+    document.getElementById('popupContainer1').style.display = 'none';
+  });
+
+
+
+  // JavaScript to handle click event on "立即试用" link
+  document.getElementById('tryNow_wxOfficialAccount').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default link behavior
+
+    // Show the popup container
+    document.getElementById('popupContainer2').style.display = 'block';
+  });
+
+  // JavaScript to handle click event on close button
+  document.getElementById('closeBtn2').addEventListener('click', function() {
+    // Hide the popup container
+    document.getElementById('popupContainer2').style.display = 'none';
   });
 </script>
 
