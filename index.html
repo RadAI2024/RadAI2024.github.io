@@ -39,6 +39,25 @@
       font-weight: bold;
     }
 
+@media only screen and (max-width: 600px) {
+  nav ul {
+    align-items: flex-start; /* 水平靠上对齐 */
+  }
+
+  nav ul li {
+    margin: 5px 0; /* 调整垂直间距 */
+  }
+
+  nav ul li a {
+    font-size: 14px; /* 调小字体大小 */
+  }
+ .logo {
+     display: none;
+  }
+
+}
+
+
     nav h1 {
       margin: 0; /* 去掉标题的外边距 */
     }
@@ -223,14 +242,14 @@
 <div class="popup-container" id="popupContainer1">
   <div class="popup-content">
     <span class="close-btn" id="closeBtn1">&times;</span>
-    <img src="/asset/ma1.jpg" alt="Popup Image" class="popup-image">
+    <img src="./asset/ma1.jpg" alt="Popup Image" class="popup-image">
   </div>
 </div>
 <!-- 公众号二维码 -->
 <div class="popup-container" id="popupContainer2">
   <div class="popup-content">
     <span class="close-btn" id="closeBtn2">&times;</span>
-    <img src="/asset/ma2.jpg" alt="Popup Image" class="popup-image">
+    <img src="./asset/ma2.jpg" alt="Popup Image" class="popup-image">
   </div>
 </div>
 <!-- 页面内容 -->
@@ -238,8 +257,8 @@
   <!-- 导航栏 -->
   <nav>
     <ul>
-      <li>
-        <h1 class="logo"><span></span> 龙影</h1>
+      <li  class="logo">
+        <h1><span></span> 龙影</h1>
       </li>
       <li><a href="#model">模型介绍</a></li>
       <li><a href="#product">产品介绍</a></li>
